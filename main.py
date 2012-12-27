@@ -14,5 +14,5 @@ for book in kjv.bible:
             
             # Only print is something is differnt
             if kjv_body != nkjv_body:
-                print '<p><b>[%s %s:%s]</b> %s</p><br>' % \
+                print '<p><b>[%s %s:%s]</b> %s</p>' % \
                     (book, chapter, verse, html_diff(kjv_body, nkjv_body))
