@@ -5,8 +5,12 @@ from simplediff import html_diff
 kjv = Bible('bibles/kjv.xml')
 nkjv = Bible('bibles/nkjv.xml')
 
+directory = './kjv_vs_nkjv/'
+
 # go in order through all books, chapters, verses
 for book in kjv.bible:
+    print 'opening %s%s.html for writing' % (directory, book)
+    f = open('%s%s.html' % (directory, book), 'w')
     for chapter in kjv.bible[book]:
         for verse in kjv.bible[book][chapter]:
             kjv_body = kjv.bible[book][chapter][verse]
@@ -14,5 +18,7 @@ for book in kjv.bible:
             
             # Only print is something is differnt
             if kjv_body != nkjv_body:
-                print '<p><b>[%s %s:%s]</b> %s</p>' % \
+                data = '<p><b>[%s %s:%s]</b> %s</p>' % \
                     (book, chapter, verse, html_diff(kjv_body, nkjv_body))
+                f.write(data)
+    f.close()
