@@ -5,12 +5,13 @@ from simplediff import html_diff
 kjv = Bible('bibles/kjv.xml')
 nkjv = Bible('bibles/nkjv.xml')
 
+extension = '.mdown'
 directory = './kjv_vs_nkjv/'
 
 # go in order through all books, chapters, verses
 for book in kjv.bible:
     print 'opening %s%s.html for writing' % (directory, book)
-    f = open('%s%s.html' % (directory, book), 'w')
+    f = open('%s%s%s' % (directory, book, extension), 'w')
     for chapter in kjv.bible[book]:
         for verse in kjv.bible[book][chapter]:
             kjv_body = kjv.bible[book][chapter][verse]
